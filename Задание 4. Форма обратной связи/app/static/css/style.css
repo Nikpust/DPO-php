@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #6b10cb, #2575fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#request-container, #response-container {
+    background: #F9F7FA;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 500px;
+}
+
+#response-container {
+    display: none;
+}
+
+#response-container p {
+    margin-bottom: 5px;
+}
+
+h1 {
+    text-align: center;
+    color: #444444;
+    margin-bottom: 15px;
+}
+
+.form-input-group {
+    margin-bottom: 15px;
+}
+
+.form-input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555555;
+}
+
+.form-input-group input, .form-input-group textarea {
+    width: 100%;
+    height: 44px;
+    padding: 10px 10px;
+    border: 1px solid #CCCCCC;
+    background: #FEFCFF;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border 0.3s ease;
+}
+
+.form-input-group textarea {
+    height: 120px;
+    resize: none;
+}
+
+.form-input-group input:focus, textarea:focus {
+    border-color: #6b10cb;
+    box-shadow: 0 0 5px rgba(150, 60, 235, 0.5);
+    outline: none;
+}
+
+.input-error {
+    border-color: red !important;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    display: none;
+}
+
+.form-button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+button {
+    width: 100%;
+    height: 44px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-submit {
+    background-color: #6a11cb;
+    color: #FEFCFF;
+}
+
+.btn-reset {
+    background: #CCCCCC;
+    color: #444444;
+}
+
+.btn-submit:hover {
+    background-color: #2575fc;
+    transform: scale(1.05);
+}
+
+.btn-reset:hover {
+    background-color: #CCCCCC;
+    transform: scale(1.05);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #D3D3D3;
+    border-radius: 15px;
+    border: 2px solid #FEFCFF;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+    margin: 4px 0;
+}
