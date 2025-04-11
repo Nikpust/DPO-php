@@ -1,0 +1,17 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app:/var/www/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
+  
+  php:
+    build:
+      context: ./app
+      dockerfile: Dockerfile 
+    volumes:
+      - ./app:/var/www/html
+    env_file:
+      - .env
