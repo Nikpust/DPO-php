@@ -1,0 +1,86 @@
+.dropdown {
+    position: relative;
+}
+
+.dropdown-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius);
+    height: 40px;
+    width: 100%;
+    padding: 10px 12px;
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dropdown-inputs::after {
+    content: '▾';
+    margin-left: 10px;
+}
+
+.dropdown-inputs:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--focus-shadow);
+}
+
+.dropdown-menu {
+    position: absolute;
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius);
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px;
+    box-shadow: var(--shadow);
+    z-index: 100;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown-menu a.dropdown-link {
+    display: block;
+    padding: 10px 15px;
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a.dropdown-link:hover {
+    background-color: var(--color-highlight);
+}
+
+.dropdown-menu.open {
+    max-height: 200px;
+    opacity: 1;
+    overflow-y: auto;
+}
+
+.dropdown-menu label {
+    display: block;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-text);
+    border-radius: 8px;
+}
+
+.dropdown-menu input[type="checkbox"],
+.dropdown-menu input[type="radio"] {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.dropdown-menu label:hover {
+    background-color: var(--color-highlight);
+    color: var(--color-text);
+}

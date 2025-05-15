@@ -1,0 +1,25 @@
+:root {
+    --color-bg:             #0d1117;
+    --color-surface:        #161b22;
+    --color-accent:         #6D6AFF;
+    --color-accent-hover:   #5B57F0;
+    --color-error:          #FF6B6B;
+    --color-error-hover:    #FF5252;
+    --color-text:           #E6EDF3;
+    --color-muted:          #848D97;
+    --color-border:         #2D333B;
+    --color-highlight:      rgba(109, 106, 255, 0.12);
+
+    --color-scrollbar-thumb:      #3B4048;
+    --color-scrollbar-thumb-hover:  var(--color-accent);
+
+    --font-main: 'Segoe UI', system-ui, sans-serif;
+    --font-size-base: 16px;
+
+    --radius: 14px;
+
+    --shadow:       0 3px 6px rgba(12, 15, 20, 0.25);
+    --shadow-hover: 0 6px 12px rgba(12, 15, 20, 0.35);
+    --focus-shadow: 0 0 0 3px rgba(109, 106, 255, 0.3);
+    --error-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+}
