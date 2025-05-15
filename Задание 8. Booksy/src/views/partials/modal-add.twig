@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление</title>
+</head>
+<body>
+    <div class="modal-overlay" id="modal-overlay-add">
+        <div class="modal-form">
+            <div class="modal-header">
+                <h2 id="modal-title">Добавить книгу</h2>
+                <button type="button" class="modal-close" onclick="closeModalAdd()">✖</button>
+            </div>
+
+            <form id="book-form-add">
+                <div class="form-input-group">
+                    <label for="title">Название книги:</label>
+                    <input type="text" name="title" class="form-input" required>    
+                </div>
+
+                <div class="form-input-group">
+                    <label for="author">Автор:</label>
+                    <input type="text" name="author" class="form-input" required>
+                </div>
+
+                <div class="form-input-group">
+                    <label for="read-date">Дата прочтения:</label>
+                    <input type="date" name="read-date" class="form-input" required>    
+                </div>
+
+                <div class="group">
+                    <div class="fles">
+                        <div class="form-input-group">
+                            <label for="cover">Обложка:</label>
+                            <input type="file" name="cover" id="cover-add" accept=".png, .jpg, .jpeg" required>
+                        </div>
+                        
+                        <div class="form-input-group">
+                            <label for="file">Файл книги:</label>
+                            <input type="file" name="file" id="file-add" accept=".pdf" required>
+                            <div id="file-preview-add"></div>
+                        </div>
+                    </div>
+                    <div id="cover-preview-add"></div>
+                </div>
+                
+                <label><input type="checkbox" name="allow_download"> Разрешить скачивание</label>
+            
+                <div class="form-buttons">
+                    <button type="reset" class="btn btn-reset">Очистить</button>
+                    <button type="submit" class="btn btn-secondary" id="btn-add-book">Добавить</button>
+                </div>
+            </form>
+        
+            <div id="bookadd-message" class="message-box hidden">
+                <button type="button" class="message-close" onclick="closeMessage('bookadd')">✖</button>
+                <div id="bookadd-message-content"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

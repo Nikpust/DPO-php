@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booksy — Профиль</title>
+
+    <link rel="icon" href="/assets/images/favicon.ico">
+
+    <link rel="stylesheet" href="/assets/css/root/variables.css">
+    <link rel="stylesheet" href="/assets/css/root/common.css">
+
+    <link rel="stylesheet" href="/assets/css/components/buttons.css">
+    <link rel="stylesheet" href="/assets/css/components/dropdown.css">
+    <link rel="stylesheet" href="/assets/css/components/modal.css">
+    <link rel="stylesheet" href="/assets/css/components/book-form.css">
+    <link rel="stylesheet" href="/assets/css/components/notification.css">
+    <link rel="stylesheet" href="/assets/css/components/card.css">
+
+    <link rel="stylesheet" href="/assets/css/pages/profile.css">
+</head>
+<body>
+    <section class="profile-header">
+        <div class="profile-card">
+            <div class="profile-avatar">
+                <img src="/assets/images/user-avatar.svg" alt="Аватар пользователя">
+            </div>
+    
+            <div class="profile-details">
+                <h2 class="user-name">{{ session.user_fullname }}</h2>
+                <h2 class="user-email">{{ session.user_email }}</h2>
+            </div>
+    
+            <div class="profile-actions">
+                <a href="/" class="btn btn-secondary">На главную ↶</a>
+                <a href="/logout" class="btn btn-reset">Выйти</a>
+            </div>
+        </div>
+    </section>    
+
+    <section class="catalog">
+        <div class="nav">
+            <h1>Коллекция книг</h1>
+            <div class="nav-buttons">
+                <button class="btn btn-primary" onclick="openModalAdd()">Добавить книгу</button>
+            </div>
+        </div>
+
+        <div class="catalog-grid">
+            {% for book in books %}
+            <div class="card-book">
+                <div class="card-image">
+                    <img src="{{ book.book_cover_path }}" alt="Обложка книги">
+                    <div class="card-info">
+                        <h2 class="card-title">{{ book.book_title }}</h2>
+                        <p class="card-author">{{ book.book_author }}</p>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-secondary btn-more" data-id="{{ book.book_id }}">Подробнее</button>
+                    <button class="btn btn-secondary btn btn-secondary btn-download" data-id="{{ book.book_id }}">⬇</button>
+                    <button class="btn btn-secondary btn-edit" onclick="openModalEdit()" data-id="{{ book.book_id }}">🖊</button>
+                    <button class="btn btn-reset btn-delete" data-id="{{ book.book_id }}">✕</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% include 'partials/modal-add.twig' %}
+    {% include 'partials/modal-edit.twig' %}
+    {% include 'partials/modal-more.twig' %}
+    
+    <script src="/assets/js/message.js"></script>
+    <script src="/assets/js/dropdown.js"></script>
+    <script src="/assets/js/modal.js"></script>
+    <script src="/assets/js/preview-files.js"></script>
+    <script src="/assets/js/ajax.js"></script>
+</body>
+</html>

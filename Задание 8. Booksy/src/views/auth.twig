@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booksy — Авторизация</title>
+
+    <link rel="icon" href="/assets/images/favicon.ico">
+
+    <link rel="stylesheet" href="/assets/css/root/variables.css">
+    <link rel="stylesheet" href="/assets/css/root/common.css">
+
+    <link rel="stylesheet" href="/assets/css/components/buttons.css">
+    <link rel="stylesheet" href="/assets/css/components/notification.css">
+    
+    <link rel="stylesheet" href="/assets/css/pages/auth.css">
+</head>
+<body>
+    <div class="auth-container{% if mode == 'sign-up' %} right-panel-active {% endif %}" id="auth-container">
+
+        <div class="form-container sign-up-container">
+            <form id="register-form">
+                <h1>Создать аккаунт</h1>
+
+                <input type="text" name="name" placeholder="ФИО" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Пароль" required>
+
+                <button class="btn btn-primary" type="submit" id="btn-register">Зарегистрироваться</button>
+
+                <div id="register-message" class="message-box hidden">
+                    <button type="button" class="message-close" onclick="closeMessage('register')">✖</button>
+                    <div id="register-message-content"></div>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-container sign-in-container">
+            <form id="login-form">
+                <h1>Войти</h1>
+
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Пароль" required>
+
+                <button class="btn btn-primary" type="submit" id="btn-login">Войти</button>
+
+                <div id="login-message" class="message-box hidden">
+                    <button type="button" class="message-close" onclick="closeMessage('login')">✖</button>
+                    <div id="login-message-content"></div>
+                </div>
+            </form>
+        </div>
+
+        <div class="overlay-container">
+            <a href="/" class="logo-auth">
+                <img src="/assets/images/booksy-logo.svg" alt="Booksy Logo">
+                <span>Booksy</span>
+            </a>
+            
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>С возвращением!</h1>
+                    <p>Для доступа к аккаунту войдите в систему</p>
+                    <button id="to-signin" class="btn ghost">Войти</button>
+                </div>
+
+                <div class="overlay-panel overlay-right">
+                    <h1>Добро пожаловать!</h1>
+                    <p>Впервые здесь? Создайте аккаунт и присоединяйтесь!</p>
+                    <button id="to-signup" class="btn ghost">Регистрация</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/message.js"></script>
+    <script src="/assets/js/ajax.js"></script>
+    <script src="/assets/js/auth.js"></script>
+</body>
+</html>

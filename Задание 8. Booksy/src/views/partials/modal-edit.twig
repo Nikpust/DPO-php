@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование</title>
+</head>
+<body>
+    <div class="modal-overlay" id="modal-overlay-edit">
+        <div class="modal-form">
+            <div class="modal-header">
+                <h2 id="modal-title">Редактировать данные</h2>
+                <button type="button" class="modal-close" onclick="closeModalEdit()">✖</button>
+            </div>
+
+            <form id="book-form-edit">
+                <div class="form-input-group">
+                    <label for="title">Название книги:</label>
+                    <input type="text" name="title" class="form-input" id="title" required>    
+                </div>
+
+                <div class="form-input-group">
+                    <label for="author">Автор:</label>
+                    <input type="text" name="author" class="form-input" id="author" required>
+                </div>
+
+                <div class="form-input-group">
+                    <label for="read-date">Дата прочтения:</label>
+                    <input type="date" name="read-date" class="form-input" id="read-date" required>    
+                </div>
+
+                <div class="group">
+                    <div class="fles">
+                        <div class="form-input-group">
+                            <label for="cover">Обложка:</label>
+                            <input type="file" name="cover" id="cover-edit" accept=".png, .jpg, .jpeg">
+                        </div>
+                        
+                        <div class="form-input-group">
+                            <label for="file">Файл книги:</label>
+                            <input type="file" name="file" id="file-edit" accept=".pdf">
+                            <div id="file-preview-edit"></div>
+                        </div>
+                    </div>
+                    <div id="cover-preview-edit"></div>
+                </div>
+                
+                <label><input id="allow_download" type="checkbox" name="allow_download"> Разрешить скачивание</label>
+            
+                <div class="form-buttons">
+                    <button type="reset" class="btn btn-reset">Очистить</button>
+                    <button type="submit" class="btn btn-secondary" id="btn-update-book">Обновить</button>
+                </div>
+            </form>
+        
+            <div id="bookedit-message" class="message-box hidden">
+                <button type="button" class="message-close" onclick="closeMessage('bookedit')">✖</button>
+                <div id="bookedit-message-content"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

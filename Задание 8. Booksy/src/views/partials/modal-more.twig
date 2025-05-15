@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подбробнее</title>
+</head>
+<body data-user-id="{{ session.user_id }}">
+    <div class="modal-overlay" id="modal-more-overlay">
+        <div class="modal-form">
+            <div class="modal-header">
+                <h2 id="modal-more-title">Информация о книге</h2>
+                <button type="button" class="modal-close" onclick="closeModalMore()">✖</button>
+            </div>
+            
+            <p class="book-title">Название книги: <span id="book-title"></span></p>
+            <p>Автор: <span id="book-author"></span></p>
+            <p>Создатель: <span id="book-creator"></span></p>
+            <p>Дата добавления: <span id="book-date-added"></span></p>
+            <p>Дата прочтения: <span id="book-read-date"></span></p>
+        </div>
+    </div>
+</body>
+</html>

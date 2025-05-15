@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booksy — Добро пожаловать</title>
+
+    <link rel="icon" href="/assets/images/favicon.ico">
+    
+    <link rel="stylesheet" href="/assets/css/root/variables.css">
+    <link rel="stylesheet" href="/assets/css/root/common.css">
+
+    <link rel="stylesheet" href="/assets/css/components/buttons.css">
+    <link rel="stylesheet" href="/assets/css/components/dropdown.css">
+    <link rel="stylesheet" href="/assets/css/components/header.css">
+    <link rel="stylesheet" href="/assets/css/components/card.css">
+    <link rel="stylesheet" href="/assets/css/components/modal.css">
+
+    <link rel="stylesheet" href="/assets/css/pages/hero.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <div class="logo">
+                <img src="/assets/images/booksy-logo.svg" alt="Booksy Logo">
+                <span>Booksy</span>
+            </div>
+    
+            <nav class="nav">
+                <a href="" class="nav__link scroll-to" data-target="main">Главная</a>
+                <a href="" class="nav__link scroll-to" data-target="books">Книги</a>
+                <a href="" class="nav__link scroll-to" data-target="about">О нас</a>
+            </nav>
+    
+            {% if session.user_id %}
+            <div class="dropdown">
+                <button class="dropdown-user" id="drop-button">
+                    <img src="/assets/images/user-avatar.svg" alt="User Icon">
+                </button>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="/profile" class="dropdown-link">Профиль</a>
+                    <a href="/logout" class="dropdown-link">Выйти</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="auth">
+                <a href="/login" class="btn btn-secondary">Войти</a>
+                <a href="/register" class="btn btn-primary">Регистрация</a>
+            </div>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="main" id="main">
+        <div class="container hero">
+            <div class="hero__text">
+                <h1>Открывайте книги, исследуйте истории, создавайте свою коллекцию!</h1>
+                <p>
+                    Добро пожаловать в <strong>Booksy</strong> — современную платформу для чтения и управления книгами.<br>
+                    Здесь вы можете открывать и находить уникальные произведение в авторстве от разных пользователей. Также можете публиковать и делиться своими любимыми шедеврами или просто использвоать в качестве хранения нашу платформу.
+                </p>
+
+                <ul class="hero__features">
+                    <li>📖 XXI - пора читать онлайн</li>
+                    <li>📝 Редактируйте и удаляйте книги, которые вы добавили</li>
+                    <li>🌟 Добавляйте любимые книги в личную коллекцию</li>
+                    <li>📅 Следите за новинками и рекомендациями</li>
+                </ul>
+
+                <a href="" class="btn btn-primary scroll-to" data-target="books">Перейти к книгам</a>
+            </div>
+
+            <div class="hero__image">
+                <img src="/assets/images/main-image.svg" alt="Иллюстрация книги">
+            </div>
+        </div>
+    </main>
+
+    <section class="container books" id="books">
+        <h2 class="section-title">Коллекция книг наших пользователей</h2>
+        <div class="catalog-grid">
+            {% for book in books %}
+            <div class="card-book">
+                <div class="card-image">
+                    <img src="{{ book.book_cover_path }}" alt="Обложка книги">
+                    <div class="card-info">
+                        <p class="card-title">{{ book.book_title }}</p>
+                        <p class="card-author">{{ book.book_author }}</p>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-secondary btn-more" data-id="{{ book.book_id }}">Подробнее</button>
+                    <button class="btn btn-secondary btn-download" data-id="{{ book.book_id }}">⬇</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% include 'partials/modal-more.twig' %}
+
+    <footer class="footer" id="about">
+        <div class="container footer__container">
+            <div class="footer__info">
+                <p>© {{ "now"|date("Y") }} Booksy. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/scroll.js"></script>
+    <script src="/assets/js/dropdown.js"></script>
+    <script src="/assets/js/modal.js"></script>
+    <script src="/assets/js/message.js"></script>
+    <script src="/assets/js/ajax.js"></script>
+</body>
+</html>
