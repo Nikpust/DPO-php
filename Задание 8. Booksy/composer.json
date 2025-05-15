@@ -1,0 +1,25 @@
+{
+    "name": "nikpust/booksy",
+    "description": "Личная библиотека книг",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikita"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "twig/twig": "^3.0",
+        "symfony/routing": "^6.0",
+        "symfony/http-foundation": "^6.0",
+        "symfony/dotenv": "^6.0",
+        "symfony/uid": "^7.2",
+        "symfony/mime": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
