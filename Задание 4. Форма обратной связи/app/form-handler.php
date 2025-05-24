@@ -1,12 +1,14 @@
 <?php
-    date_default_timezone_set("Europe/Moscow");
+    date_default_timezone_set("Europe/Moscow");     # Устанавливаем часовой пояс по умолчанию
     
-    require "db.php";
+    require "db.php";   # Подключаемся к базе данных
 
+    # Функция для валидации данных по регулярному выражению
     function validation($data, $pattern) {
         return preg_match($pattern, $data);
     }
 
+    # Функция для отправки письма через SMTP-сервер
     function send_mail($to, $subject, $message) : void {
         $smtp_server = getenv("SMTP_SERVER");
         $smtp_port = getenv("SMTP_PORT");
@@ -60,20 +62,25 @@
         fclose($socket);
     }
 
+    # Проверяем, что запрос был отправлен методом POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        # Получаем и очищаем введенные пользователем данные
         $full_name = trim($_POST["full-name"] ?? "");
         $email = trim($_POST["email"] ?? "");
         $phone = trim($_POST["phone"] ?? "");
         $comment = trim($_POST["comment"] ?? "");
 
+        # Шаблоны для проверки корректности ввода данных
         $patterns = [
             'full_name' => '/^[a-zA-Zа-яА-ЯёЁ]+(?:\s[a-zA-Zа-яА-ЯёЁ]+)+$/u',
             'email' => '/^[A-Za-z0-9][A-Za-z0-9_.-]{2,29}@[A-Za-z]{2,30}\.[a-z]{2,10}$/',
             'phone' => '/^\+7\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$/'
         ];
 
+        # Хранение ошибок
         $message = "";
 
+        # Проверяем корректность введенных данных
         if (!validation($full_name, $patterns['full_name'])) {
             $message .= " ФИО,";
         }
@@ -86,19 +93,24 @@
 
         $message = rtrim($message, ',');
 
+        # Если ошибок нет, то продолжаем обработку запроса
         if ($message == "") {
 
             try {
+                # Проверяем, есть ли уже запросы от этого email в базе данных
                 $sql = "SELECT request_created_at FROM requests WHERE request_email = :email ORDER BY request_created_at DESC LIMIT 1";
                 $sth = $database->prepare($sql);
                 $sth->execute([":email" => $email]);
                 $last_request = $sth->fetch(PDO::FETCH_ASSOC);
 
+                # Если запрос был отправлен менее часа назад, то выводим сообщение об ошибке
                 if ($last_request) {
+                    # Вычисляем разницу во времени между последним запросом и текущим временем
                     $last_time = strtotime($last_request['request_created_at']);
                     $current_time = time();
                     $time_diff = $current_time - $last_time;
     
+                    # Если разница меньше 3600 секунд (1 час), то выводим сообщение об ошибке
                     if ($time_diff < 3600) {
                         $seconds_remaining = 3600 - $time_diff;
                         $minutes_remaining = floor($seconds_remaining / 60);
@@ -111,6 +123,7 @@
                     }
                 }
 
+                # Если запросов не было или прошло больше часа, то сохраняем новый запрос в БД
                 $sql = "INSERT INTO requests (request_created_at, request_full_name, request_email, request_phone_number, request_comment) 
                         VALUES (:time, :full_name, :email, :phone, :comment)";
                 $time = date("H:i:s, d M Y");
@@ -123,6 +136,7 @@
                     ":comment" => $comment
                 ]);
 
+                # Если запрос успешно сохранен, то отправляем письмо и выводим ответ
                 $full_name_array = explode(" ", $full_name);
 
                 $to = "20_nik_05@mail.ru";
